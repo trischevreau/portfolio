@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Analyse de données Covid",
+    "description": "Dashboard interactif avec Python et Plotly.",
+    "image": "assets/images/covid-dashboard.png",
+    "tags": ["data", "python", "dashboard"],
+    "link": "https://github.com/tonprofil/covid-dashboard"
+  },
+  {
+    "title": "Site e-commerce minimaliste",
+    "description": "Frontend statique avec panier et Stripe mock.",
+    "image": "assets/images/ecommerce.png",
+    "tags": ["frontend", "javascript", "html"],
+    "link": "https://tonportfolio.com/ecommerce"
+  }
+]
