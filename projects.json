@@ -1,16 +1,26 @@
 [
   {
-    "title": "Analyse de données Covid",
-    "description": "Dashboard interactif avec Python et Plotly.",
-    "image": "assets/images/covid-dashboard.png",
-    "tags": ["data", "python", "dashboard"],
-    "link": "https://github.com/tonprofil/covid-dashboard"
+    "title": "Outil d'aide à l'utilisation de la théorie musicale",
+    "description": "Enfin de faciliter l'utilisation de la théorie musicale dans mes compositions, j'ai développé un outil en Python (Tkinter) qui génère des progressions d'accords, des mélodies et des transpositions basés sur des règles théoriques. L'outil permet également d'exporter les résultats au format MIDI pour une utilisation dans des logiciels de production musicale.",
+    "image": "SHIMUT.png",
+    "tags": ["Python", "Interface", "Musique"],
+    "date": "2021",
+    "link": "https://github.com/trischevreau/SHIMUT"
   },
   {
-    "title": "Site e-commerce minimaliste",
-    "description": "Frontend statique avec panier et Stripe mock.",
-    "image": "assets/images/ecommerce.png",
-    "tags": ["frontend", "javascript", "html"],
-    "link": "https://tonportfolio.com/ecommerce"
+    "title": "Conception d'un compteur de respirations",
+    "description": "Dans le cadre d'un projet artistique d'un ami, appelé 'Rencontre en 1000 respirations', j'ai conçu la partie logicielle de compteurs communiquants de respirations humaines utilisant Arduino, Python et le protocole Bluetooth.",
+    "image": "1000respirations.png",
+    "tags": ["Arduino", "Python", "Prototypage"],
+    "date": "avril 2022",
+    "link": "https://www.youtube.com/watch?v=tle1mi91wjY"
+  },
+  {
+    "title": "Fabrication d'un joystick DIY pour jeux vidéo rétros",
+    "description": "Pour jouer à des jeux vidéo rétros, j'ai fabriqué un joystick DIY en utilisant des composants <i>off the shelf</i>, de l'impression 3D et un peu de travail du bois.",
+    "image": ["joystick/1.jpg", "joystick/2.jpg", "joystick/3.jpg"],
+    "tags": ["Impression 3D", "Jeux Vidéo", "Prototypage"],
+    "date": "décembre 2022",
+    "link": "https://www.youtube.com/watch?v=tle1mi91wjY"
   }
 ]
