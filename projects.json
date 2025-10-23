@@ -4,7 +4,7 @@
     "description": "Enfin de faciliter l'utilisation de la théorie musicale dans mes compositions, j'ai développé un outil en Python (Tkinter) qui génère des progressions d'accords, des mélodies et des transpositions basés sur des règles théoriques. L'outil permet également d'exporter les résultats au format MIDI pour une utilisation dans des logiciels de production musicale.",
     "image": "SHIMUT.png",
     "tags": ["Python", "Interface", "Musique"],
-    "date": "2021",
+    "date": "2023",
     "link": "https://github.com/trischevreau/SHIMUT"
   },
   {
@@ -22,5 +22,13 @@
     "tags": ["Impression 3D", "Jeux Vidéo", "Prototypage"],
     "date": "décembre 2022",
     "link": null
+  },
+  {
+    "title": "Prospection et tests de nouvelles méthodes de capture pour l'analyse du mouvement",
+    "description": "Dans le cadre d'un stage d'application en recherche au sein du Laboratoire DIMEAS de <i>Politecnico di Torino</i>, j'ai exploré et testé 3 méthodes différentes pour obtenir des images synchronisées avec des smartphones pour l'analyse cinématique DICe (Digital Image Correlation). J'ai également développé des scripts en Python pour le traitement et l'analyse des données recueillies. Ce travail a permis de mener à une publication scientifique pour la conférence IMACS.",
+    "image": ["joystick/1.jpg", "joystick/2.jpg", "joystick/3.jpg"],
+    "tags": ["Impression 3D", "Jeux Vidéo", "Prototypage"],
+    "date": "été 2023",
+    "link": "assets/pdfs/RapportDICe.pdf"
   }
 ]
