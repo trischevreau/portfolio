@@ -15,70 +15,48 @@ function displayProjects(projects) {
   projects.forEach(p => {
     const card = document.createElement('div');
     card.className = 'bg-white rounded-2xl shadow p-4 hover:shadow-lg transition';
-    
-    // Préfixer le chemin de l'image
+
     const imagePath = (src) => `assets/images/${src}`;
+    const renderLinks = (links) => links.map(link => `
+      <a href="${link.url}" target="_blank" class="text-blue-600 hover:underline text-sm">
+        Voir ${link.label} →
+      </a>
+    `).join('<br>');
 
-    // If p.image is an array -> create carousel structure
-    if (Array.isArray(p.image) && p.image.length > 0) {
-      card.innerHTML = `
+    const renderTags = (tags) => tags.map(t => `
+      <span class="tag bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">${t}</span>
+    `).join('');
+
+    const renderCarousel = (images) => `
       <div class="carousel relative overflow-hidden rounded-xl mb-3" style="position:relative;">
-      <div class="carousel-track" style="display:flex; width:100%; transition:transform 0.5s ease;">
-      ${p.image.map(src => `<img src="${imagePath(src)}" alt="${p.title}" style="width:100%; flex-shrink:0; object-fit:cover;">`).join('')}
+        <div class="carousel-track" style="display:flex; width:100%; transition:transform 0.5s ease;">
+          ${images.map(src => `<img src="${imagePath(src)}" alt="${p.title}" style="width:100%; flex-shrink:0; object-fit:cover;">`).join('')}
+        </div>
+        <button class="carousel-prev" aria-label="Prev" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">‹</button>
+        <button class="carousel-next" aria-label="Next" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">›</button>
+        <div class="carousel-dots" style="position:absolute;right:8px;bottom:8px;display:flex;gap:6px;"></div>
       </div>
-      <button class="carousel-prev" aria-label="Prev" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">‹</button>
-      <button class="carousel-next" aria-label="Next" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">›</button>
-      <div class="carousel-dots" style="position:absolute;right:8px;bottom:8px;display:flex;gap:6px;"></div>
-      </div>
-      <h2 class="text-xl flex justify-between items-center">
-      <span class="font-semibold">${p.title}</span>
-      <span class="text-sm italic font-normal">${p.date}</span>
-      </h2>
-      <p class="text-gray-600 text-sm mb-2">${p.description}</p>
-      <div class="flex flex-wrap gap-1 mb-3">
-      ${p.tags.map(t => `<span class="tag bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">${t}</span>`).join('')}
-      </div>
-      ${p.link ? (p.link.endsWith('.pdf') 
-      ? `<a href="${p.link}" target="_blank" class="text-blue-600 hover:underline text-sm" onclick="openPDFViewer(event, '${p.link}')">Voir le projet →</a>` 
-      : `<a href="${p.link}" target="_blank" class="text-blue-600 hover:underline text-sm">Voir le projet →</a>`) : ''}
-      `;
-    } else {
-      // single image or missing
-      const imgSrc = Array.isArray(p.image) ? (p.image[0] || '') : (p.image || '');
-      card.innerHTML = `
-      <img src="${imagePath(imgSrc)}" alt="${p.title}" class="rounded-xl mb-3">
-      <h2 class="text-xl flex justify-between items-center">
-      <span class="font-semibold">${p.title}</span>
-      <span class="text-sm italic font-normal">${p.date}</span>
-      </h2>
-      <p class="text-gray-600 text-sm mb-2">${p.description}</p>
-      <div class="flex flex-wrap gap-1 mb-3">
-      ${p.tags.map(t => `<span class="tag bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">${t}</span>`).join('')}
-      </div>
-      ${p.link ? (p.link.endsWith('.pdf') 
-      ? `<a href="${p.link}" target="_blank" class="text-blue-600 hover:underline text-sm" onclick="openPDFViewer(event, '${p.link}')">Voir le projet →</a>` 
-      : `<a href="${p.link}" target="_blank" class="text-blue-600 hover:underline text-sm">Voir le projet →</a>`) : ''}
-      `;
-    }
+    `;
 
-    // Function to open PDF in a viewer
-    function openPDFViewer(event, pdfPath) {
-      event.preventDefault();
-      const viewerUrl = `https://docs.google.com/gview?url=${location.origin}/${pdfPath}&embedded=true`;
-      const viewerWindow = window.open('', '_blank');
-      viewerWindow.document.write(`
-      <html>
-        <head><title>PDF Viewer</title></head>
-        <body style="margin:0; padding:0; overflow:hidden;">
-        <iframe src="${viewerUrl}" style="border:none; width:100%; height:100vh;"></iframe>
-        </body>
-      </html>
-      `);
-    }
+    const renderImage = (image) => `
+      <img src="${imagePath(image)}" alt="${p.title}" class="rounded-xl mb-3">
+    `;
+
+    card.innerHTML = `
+      ${Array.isArray(p.image) && p.image.length > 0 ? renderCarousel(p.image) : renderImage(p.image || '')}
+      <h2 class="text-xl flex justify-between items-center">
+        <span class="font-semibold">${p.title}</span>
+        <span class="text-sm italic font-normal">${p.date}</span>
+      </h2>
+      <p class="text-gray-600 text-sm mb-2">${p.description}</p>
+      <div class="flex flex-wrap gap-1 mb-3">
+        ${renderTags(p.tags)}
+      </div>
+      ${p.links ? renderLinks(p.links) : ''}
+    `;
 
     container.appendChild(card);
 
-    // initialize carousel if necessary
     if (Array.isArray(p.image) && p.image.length > 0) {
       initCarousel(card.querySelector('.carousel'), p.image);
     }
