@@ -22,38 +22,38 @@ function displayProjects(projects) {
     // If p.image is an array -> create carousel structure
     if (Array.isArray(p.image) && p.image.length > 0) {
       card.innerHTML = `
-        <div class="carousel relative overflow-hidden rounded-xl mb-3" style="position:relative;">
-          <div class="carousel-track" style="display:flex; width:100%; transition:transform 0.5s ease;">
-            ${p.image.map(src => `<img src="${imagePath(src)}" alt="${p.title}" style="width:100%; flex-shrink:0; object-fit:cover;">`).join('')}
-          </div>
-          <button class="carousel-prev" aria-label="Prev" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">‹</button>
-          <button class="carousel-next" aria-label="Next" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">›</button>
-          <div class="carousel-dots" style="position:absolute;right:8px;bottom:8px;display:flex;gap:6px;"></div>
+      <div class="carousel relative overflow-hidden rounded-xl mb-3" style="position:relative;">
+        <div class="carousel-track" style="display:flex; width:100%; transition:transform 0.5s ease;">
+        ${p.image.map(src => `<img src="${imagePath(src)}" alt="${p.title}" style="width:100%; flex-shrink:0; object-fit:cover;">`).join('')}
         </div>
-        <h2 class="text-xl flex justify-between items-center">
-          <span class="font-semibold">${p.title}</span>
-          <span class="text-sm italic font-normal">${p.date}</span>
-        </h2>
-        <p class="text-gray-600 text-sm mb-2">${p.description}</p>
-        <div class="flex flex-wrap gap-1 mb-3">
-          ${p.tags.map(t => `<span class="tag bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">${t}</span>`).join('')}
-        </div>
-        <a href="${p.link}" target="_blank" class="text-blue-600 hover:underline text-sm">Voir le projet →</a>
+        <button class="carousel-prev" aria-label="Prev" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">‹</button>
+        <button class="carousel-next" aria-label="Next" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">›</button>
+        <div class="carousel-dots" style="position:absolute;right:8px;bottom:8px;display:flex;gap:6px;"></div>
+      </div>
+      <h2 class="text-xl flex justify-between items-center">
+        <span class="font-semibold">${p.title}</span>
+        <span class="text-sm italic font-normal">${p.date}</span>
+      </h2>
+      <p class="text-gray-600 text-sm mb-2">${p.description}</p>
+      <div class="flex flex-wrap gap-1 mb-3">
+        ${p.tags.map(t => `<span class="tag bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">${t}</span>`).join('')}
+      </div>
+      ${p.link ? `<a href="${p.link}" target="_blank" class="text-blue-600 hover:underline text-sm">Voir le projet →</a>` : ''}
       `;
     } else {
       // single image or missing
       const imgSrc = Array.isArray(p.image) ? (p.image[0] || '') : (p.image || '');
       card.innerHTML = `
-        <img src="${imagePath(imgSrc)}" alt="${p.title}" class="rounded-xl mb-3">
-        <h2 class="text-xl flex justify-between items-center">
-          <span class="font-semibold">${p.title}</span>
-          <span class="text-sm italic font-normal">${p.date}</span>
-        </h2>
-        <p class="text-gray-600 text-sm mb-2">${p.description}</p>
-        <div class="flex flex-wrap gap-1 mb-3">
-          ${p.tags.map(t => `<span class="tag bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">${t}</span>`).join('')}
-        </div>
-        <a href="${p.link}" target="_blank" class="text-blue-600 hover:underline text-sm">Voir le projet →</a>
+      <img src="${imagePath(imgSrc)}" alt="${p.title}" class="rounded-xl mb-3">
+      <h2 class="text-xl flex justify-between items-center">
+        <span class="font-semibold">${p.title}</span>
+        <span class="text-sm italic font-normal">${p.date}</span>
+      </h2>
+      <p class="text-gray-600 text-sm mb-2">${p.description}</p>
+      <div class="flex flex-wrap gap-1 mb-3">
+        ${p.tags.map(t => `<span class="tag bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">${t}</span>`).join('')}
+      </div>
+      ${p.link ? `<a href="${p.link}" target="_blank" class="text-blue-600 hover:underline text-sm">Voir le projet →</a>` : ''}
       `;
     }
 
