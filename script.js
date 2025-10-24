@@ -18,10 +18,10 @@ function displayProjects(projects) {
 
     const imagePath = (src) => `assets/images/${src}`;
     const renderLinks = (links) => links.map(link => `
-      <a href="${link.url}" target="_blank" class="text-blue-600 hover:underline text-sm">
-        Voir ${link.label} →
+      <a href="${link.url}" target="_blank" class="text-blue-600 hover:underline text-sm" style="text-align: right; display: block; margin-top: 4px;">
+      Voir ${link.label} →
       </a>
-    `).join('<br>');
+    `).join('');
 
     const renderTags = (tags) => tags.map(t => `
       <span class="tag bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">${t}</span>

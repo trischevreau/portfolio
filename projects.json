@@ -27,11 +27,27 @@
     "title": "Prospection et tests de nouvelles méthodes de capture pour l'analyse du mouvement",
     "description": "Dans le cadre d'un stage d'application en recherche au sein du Laboratoire DIMEAS de <i>Politecnico di Torino</i>, j'ai exploré et testé 3 méthodes différentes pour obtenir des images synchronisées avec des smartphones pour l'analyse cinématique DICe (Digital Image Correlation). J'ai également développé des scripts en Python pour le traitement et l'analyse des données recueillies. Ce travail a permis de mener à une publication scientifique pour la conférence IMACS.",
     "image": ["DICe/2.png", "DICe/1.png", "DICe/3.png", "DICe/4.jpg"],
-    "tags": ["Électronique", "Python", "Data", "Prototypage"],
+    "tags": ["Électronique", "Python", "Data", "Prototypage", "Universitaire"],
     "date": "été 2023",
     "links": [
       {"url": "https://link.springer.com/chapter/10.1007/978-3-031-68192-9_16", "label": "la publication"},
       {"url": "assets/pdfs/RapportDICe.pdf", "label": "le rapport"},
       {"url": "https://github.com/trischevreau/Frame-Coupler", "label": "sur Github"}]
+  },
+  {
+    "title": "Étude des potentiels EnR pour la commune de Rignieux-le-Franc",
+    "description": "Dans le cadre d'un projet universitaire mené en groupe, j'ai réalisé une étude sur les potentiels en énergies renouvelables (Photovoltaïque, Méthanisation, Éolien et Hydroelectricité) pour le compte de la commune de Rignieux-le-Franc. En utilisant des données publiques de météo France et des modélisations financières, j'ai proposé des solutions pour optimiser l'utilisation des ressources énergétiques locales.",
+    "image": ["rignieux/1.png", "rignieux/2.png"],
+    "tags": ["Énergies", "Data", "Universitaire", "Python"],
+    "date": "printemps 2024",
+    "links": [{"url": "assets/pdfs/RapportEtudeENR.pdf", "label": "le rapport"}]
+  },
+  {
+    "title": "Détection de carences nutritionnelles par l'analyse d'images de feuilles : comparaison des approches descriptives et d'apprentissage profond",
+    "description": "Dans le cadre d'un projet universitaire de recherche (PAr) mené en binôme, j'ai mis en place des approches descriptives (extraction de caractéristiques) et d'apprentissage profond (CNN) pour détecter les carences nutritionnelles chez les plantes à partir d'images de feuilles. J'ai évalué les performances de chaque méthode en termes de précision et de robustesse, en utilisant des ensembles de données annotées.",
+    "image": ["PAr/1.png", "PAr/2.png", "PAr/3.png"],
+    "tags": ["Data", "Python", "Universitaire"],
+    "date": "printemps 2023",
+    "links": [{"url": "assets/pdfs/RapportPAR.pdf", "label": "le rapport"}]
   }
 ]
