@@ -11,16 +11,16 @@
     "title": "Conception d'un compteur de respirations",
     "description": "Dans le cadre d'un projet artistique d'un ami, appelé 'Rencontre en 1000 respirations', j'ai conçu la partie logicielle de compteurs communiquants de respirations humaines utilisant Arduino, Python et le protocole Bluetooth.",
     "image": "1000respirations.png",
-    "tags": ["Arduino", "Python", "Prototypage"],
-    "date": "avril 2022",
+    "tags": ["Arduino", "Python", "Prototypage", "Hardware"],
+    "date": "avril 2021",
     "links": [{"url": "https://www.youtube.com/watch?v=tle1mi91wjY", "label": "sur Youtube"}]
   },
   {
     "title": "Fabrication d'un joystick DIY pour jeux vidéo rétros",
     "description": "Pour jouer à des jeux vidéo rétros, j'ai fabriqué un joystick DIY en utilisant des composants <i>off the shelf</i>, de l'impression 3D et un peu de travail du bois.",
     "image": ["joystick/1.jpg", "joystick/2.jpg", "joystick/3.jpg"],
-    "tags": ["Impression 3D", "Jeux Vidéo", "Prototypage"],
-    "date": "décembre 2022",
+    "tags": ["Impression 3D", "Jeux Vidéo", "Prototypage", "Hardware"],
+    "date": "décembre 2020",
     "links": null
   },
   {
@@ -49,5 +49,29 @@
     "tags": ["Data", "Python", "Universitaire"],
     "date": "printemps 2023",
     "links": [{"url": "assets/pdfs/RapportPAr147.pdf", "label": "le rapport"}]
+  },
+  {
+    "title": "Refonte d'une salle serveur associative (Réseau, Machines, Virtualisation)",
+    "description": "Dans le cadre d'un projet universitaire et associatif, j'ai participé à la refonte complète d'une salle serveur pour une association étudiante. Ce projet comprenait la conception et la mise en place d'une infrastructure réseau robuste, l'installation et la configuration de serveurs physiques et virtuels, ainsi que la mise en œuvre de solutions de virtualisation.",
+    "image": ["PE57/1.png", "PE57/2.png", "PE57/3.png"],
+    "tags": ["Hardware", "Universitaire", "Associatif", "Réseau"],
+    "date": "2022",
+    "links": [{"url": "assets/pdfs/RapportPE57.pdf", "label": "le rapport"}]
+  },
+  {
+    "title": "Étude économique d'une rénovation énergétique d'une maison individuelle",
+    "description": "Dans le cadre d'un projet universitaire mené en groupe, j'ai réalisé une étude économique sur la rénovation énergétique de maison individuelle. En analysant les coûts, et en simulant les pertes et les économies d'énergie potentielles et les incitations financières disponibles, j'ai proposé différents scénarios de rénovation pour maximiser le retour sur investissement.",
+    "image": ["renovation/1.png", "renovation/2.png"],
+    "tags": ["Énergies", "Data", "Universitaire"],
+    "date": "hiver 2024",
+    "links": [{"url": "assets/pdfs/RapportRenovation.pdf", "label": "le rapport"}]
+  },
+  {
+    "title": "Analyse énergétique de la mise en contact de volants d'inertie pour le stockage d'énergie",
+    "description": "Dans le cadre d'un projet universitaire mené en groupe, j'ai réalisé une analyse énergétique de la mise en contact de volants d'inertie pour le stockage d'énergie, à l'aide d'une maquette physique et de simulations numériques.",
+    "image": ["TIPE/1.png", "TIPE/2.png"],
+    "tags": ["Énergies", "Data", "Universitaire", "Arduino"],
+    "date": "2021",
+    "links": [{"url": "assets/pdfs/TIPE.pdf", "label": "le diapo"}]
   }
 ]

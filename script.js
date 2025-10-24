@@ -7,10 +7,16 @@ async function loadProjects() {
   displayProjects(allProjects);
   displayTags();
 }
-
 function displayProjects(projects) {
   const container = document.getElementById('projects');
   container.innerHTML = '';
+
+  // Sort projects by year (most recent first)
+  projects.sort((a, b) => {
+    const yearA = parseInt(a.date.slice(-4), 10);
+    const yearB = parseInt(b.date.slice(-4), 10);
+    return yearB - yearA;
+  });
 
   projects.forEach(p => {
     const card = document.createElement('div');
