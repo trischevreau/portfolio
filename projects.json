@@ -88,6 +88,6 @@
     "image": "lampe.jpg",
     "tags": ["Pouler"],
     "date": "janvier 2024",
-    "links": [{"url": "assets/mds/test.md", "label": "le markdown"}]
+    "links": [{"url": "assets/htmls/test.html", "label": "le rapport"}]
   }
 ]
