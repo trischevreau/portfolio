@@ -70,8 +70,16 @@
     "title": "Analyse énergétique de la mise en contact de volants d'inertie pour le stockage d'énergie",
     "description": "Dans le cadre d'un projet universitaire mené en groupe, j'ai réalisé une analyse énergétique de la mise en contact de volants d'inertie pour le stockage d'énergie, à l'aide d'une maquette physique et de simulations numériques.",
     "image": ["TIPE/1.png", "TIPE/2.png"],
-    "tags": ["Énergies", "Data", "Universitaire", "Arduino"],
+    "tags": ["Énergies", "Universitaire", "Arduino"],
     "date": "2021",
     "links": [{"url": "assets/pdfs/TIPE.pdf", "label": "le diapo"}]
+  },
+  {
+    "title": "Fabrication d'une lampe de bureau",
+    "description": "J'ai conçu et fabriqué une lampe de bureau personnalisée en utilisant de la découpe laser, le montage ne nécessitant aucune colle ni vis, mais uniquement 8 boulons et écrous.",
+    "image": ["lampe.jpg"],
+    "tags": ["Prototypage", "Découpe Laser"],
+    "date": "janvier 2024",
+    "links": null
   }
 ]
