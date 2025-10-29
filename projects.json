@@ -77,7 +77,7 @@
   {
     "title": "Fabrication d'une lampe de bureau",
     "description": "J'ai conçu et fabriqué une lampe de bureau personnalisée en utilisant de la découpe laser, le montage ne nécessitant aucune colle ni vis, mais uniquement 8 boulons et écrous.",
-    "image": ["lampe.jpg"],
+    "image": "lampe.jpg",
     "tags": ["Prototypage", "Découpe Laser"],
     "date": "janvier 2024",
     "links": null
