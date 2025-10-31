@@ -12,7 +12,7 @@
     "description": "Dans le cadre d'un projet artistique d'un ami, appelé 'Rencontre en 1000 respirations', j'ai conçu la partie logicielle de compteurs communiquants de respirations humaines utilisant Arduino, Python et le protocole Bluetooth.",
     "image": "1000respirations.png",
     "tags": ["Arduino", "Python", "Prototypage", "Hardware"],
-    "date": "avril 2021",
+    "date": "avril 2019",
     "links": [{"url": "https://www.youtube.com/watch?v=tle1mi91wjY", "label": "sur Youtube"}]
   },
   {
@@ -81,5 +81,21 @@
     "tags": ["Prototypage", "Découpe Laser"],
     "date": "janvier 2024",
     "links": null
+  },
+  {
+    "title": "Fabrication d'un système modulaire de synthèse audio",
+    "description": "J'ai conçu et fabriqué des modules de synthèse audio intercompatibles en me basant sur des plans existants. Chaque module est interfaçable avec les autres via des câbles jack 3.5mm, permettant ainsi de créer un système de synthèse modulaire personnalisé. Pour l'instant : clock divider, saw/square LFO, interface de prototypage.",
+    "image": "synth/2.jpg",
+    "tags": ["Électronique", "Prototypage", "Musique"],
+    "date": "depuis 2025",
+    "links": null
+  },
+  {
+    "title": "Analyse statistique par simulation du jeu 'dix mille'",
+    "description": "J'ai testé et simulé différentes stratégies de jeu pour le jeu de dés 'dix mille' en utilisant Python. En effectuant des simulations statistiques, j'ai analysé les résultats pour déterminer les stratégies les plus efficaces et optimiser la 'reprise' des coups.",
+    "image": ["dix_mille/1.png", "dix_mille/2.png"],
+    "tags": ["Python", "Data", "Statistiques", "Simulation"],
+    "date": "2024",
+    "links": [{"url": "assets/dixmille/rapport.html", "label": "le rapport"}]
   }
 ]
