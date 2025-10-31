@@ -1,0 +1,374 @@
+<h1 id="-tude-du-jeu-dix-mille-tristan-chevreau">Étude du jeu &quot;dix mille&quot; - Tristan Chevreau</h1>
+<p>Ce document est une étude du jeu appelé &quot;dix mille&quot;, se jouant au tour par tour avec 5 dés. Il a pour objectif de savoir s&#39;il est rentable ou non de &quot;prendre&quot; le coup précédent. Pour cela, nous commencerons par étudier la valeur du coup moyen, puis la probabilité de &quot;continuer&quot;.</p>
+<h2 id="principe-du-jeu">Principe du jeu</h2>
+<p><em>Le jeu comprend énormément de variantes. La variante présentée ici est celle connue par l&#39;auteur.</em></p>
+<h3 id="r-gles-g-n-rales">Règles générales</h3>
+<p>L&#39;objectif du dix mille est d&#39;atteindre $10~000$ points le plus rapidement possible. Pour cela, le joueur devra effectuer des lancés de dés et choisir s&#39;il continue de jouer. Le jeu se joue chacun son tour.</p>
+<p>La première (et majeure) partie du jeu consiste à obtenir le plus de points possible pour se rapprocher de $10~000$ (une seconde partie, plus anecdotique, consiste à atteindre $10~000$ pile, et il faut aussi faire plus de $500$ points pour commencer mais cela ne nous intéresse pas ici). Ainsi, faire le plus de points possible est le moyen le plus efficace de gagner.</p>
+<p>Chaque fois que c&#39;est son tour, le joueur a deux choix : soit &quot;commencer&quot; un nouveau score, soit &quot;prendre&quot; le score précédent. Ensuite, il joue jusqu&#39;à perdre (ne faire aucun point sur un lancer) ou jusqu&#39;à décider de s&#39;arrêter de lancer.</p>
+<p>Un tour de joueur est donc divisé en un ou plusieurs lancers. Chaque fois qu&#39;il lance le dé, il choisit les dés gagnants qu&#39;il garde. S&#39;il ne reste plus de dés à lancer après avoir choisi les dés gardés, il reprend tout. S&#39;il n&#39;a aucun dé gagnant, il perd tous ses points pour ce tour. Ensuite, il choisit s&#39;il continue de lancer ou pas. S&#39;il choisit d&#39;arrêter, le joueur après lui peut décider de jouer les dés restants.</p>
+<p>Pour plus de précisions sur les règles, se référer aux annexes, en particulier l&#39;extrait de partie.</p>
+<h3 id="score">Score</h3>
+<p>Les moyens de marquer des points avec les dés sont comme suit : 100 points pour un dé 1, 50 points pour un dé 5. Si 3 dés ou plus ont une valeur identique sur un <strong>même lancer</strong> (pas un même tour), les valeurs sont comme suit :</p>
+<table>
+<thead>
+<tr>
+<th>nombre de dés \ valeur</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>1000</td>
+<td>200</td>
+<td>300</td>
+<td>400</td>
+<td>500</td>
+<td>600</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2000</td>
+<td>400</td>
+<td>600</td>
+<td>800</td>
+<td>1000</td>
+<td>1200</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3000</td>
+<td>600</td>
+<td>900</td>
+<td>1200</td>
+<td>1500</td>
+<td>1800</td>
+</tr>
+</tbody>
+</table>
+<p>Le score maximal possible est donc donné par :</p>
+<p>$$ S_l^{\max} = \begin{split}</p>
+<ul>
+<li>&amp; ~ \sum<em>{i=1}^6 100 i \cdot \left( \sum</em>{p=0}^2 \mathbb{1}_{N<em>i \ge 3+p}\right) \times (1 + 9 \cdot \mathbb{1}</em>{i=1})\newline</li>
+<li>&amp; ~ 50 \cdot \mathbb{1}_{N<em>1 \leq 2} ~ + ~ 100 \cdot  \mathbb{1}</em>{N_5 \leq 2}
+\end{split}
+$$</li>
+</ul>
+<p>Mais le joueur peut choisir de ne pas prendre tout le score pour garder des dés supplémentaires à relancer, soit donc, en rajoutant les choix possibles pour le joueur, $S_l$, le score pour un lancer $l$, devient :</p>
+<p>$$ S<em>l = \begin{split}
+&amp; 1000 \cdot \left( \sum</em>{p=0}^2 \mathbb{1}_{N_1\ge3+p-C<em>1^{100\text{pts}}} \cdot C</em>{N_1}^{3+p} \right) \newline</p>
+<ul>
+<li>&amp; ~ 500 \cdot \left( \sum<em>{p=0}^2 \mathbb{1}</em>{N_5\ge3+p-C<em>5^{50\text{pts}}} \cdot C</em>{N_5}^{3+p} \right) \newline</li>
+<li>&amp; ~ \sum<em>{i\in{2,3,4,6}} 100 i \left( \sum</em>{p=0}^2 \mathbb{1}_{N<em>i\ge3+p} \cdot C</em>{N_i}^{3+p} \right) \newline</li>
+<li>&amp; ~ 50 \cdot C_5^{50\text{pts}} ~ + ~ 100 \cdot C_1^{100\text{pts}}
+\end{split}
+$$</li>
+</ul>
+<p>Avec $N<em>i$, le nombre de dés lancés ayant pour valeur $i$, $\mathbb{1}</em>{\text{condition}}$ la fonction indicatrice de $\text{condition}$, $C_5^{50\text{pts}}$, $C_1^{100\text{pts}}$ le nombre de dés respectivement 1 et 5, assignés par le joueur pour valoir unitairement respectivement 50 ou 100. $C_i^{p}, i \in [[1;6]], p \in [[3;5]]$, le choix de prendre ou non un lancer de 3, 4 ou 5 valeurs $i$ identiques pour ce lancer.</p>
+<p>On notera que  $C_5^{50\text{pts}}$, $C_1^{100\text{pts}}$ et $C_i^{p}$ sont dépendants de $N_i$, qui eux-mêmes sont dépendants de $l$ ($N<em>i$ pourrait donc être noté $N</em>{i, l}$). De plus, on a  $C_5^{50\text{pts}} \leq N_5$ et $C_1^{100\text{pts}} \leq N_1$.</p>
+<p>Lors de chaque fin de lancer où le score du lancer est supérieur à zéro ($S_l &gt; 0$), le joueur peut décider de relancer les dés restants, comme un nouveau lancer. Si le score nouvellement lancé est nul, son score total vaut zéro.</p>
+<p>Lorsqu&#39;il est à son $n$-ième lancer, son score final est donc (Chaque $S_l$ est évalué indépendamment des autres.) :</p>
+<p>$$ \sigma<em>n = \prod</em>{l=1}^n \mathbb{1}_{S<em>l &gt; 0} \times \sum</em>{l=1}^{n} S<em>l = \mathbb{1}</em>{\forall l \leq n, S<em>l &gt; 0} \sum</em>{l=1}^{n} S_l$$</p>
+<p>On notera par la suite $\sigma_\infty$ la valeur finale d&#39;un tour.</p>
+<h2 id="principe-de-l-tude">Principe de l&#39;étude</h2>
+<p>L&#39;objectif ici est de savoir quand est-ce qu&#39;il est rentable de &quot;reprendre&quot; un score précédent. Pour cela, il faut connaître la valeur du coup moyen lorsque l&#39;on utilise la stratégie optimale, c&#39;est-à-dire la stratégie donnant le plus haut score en moyenne. Ensuite, il faut le score moyen maximal en relation avec la probabilité de tout perdre quand on veut reprendre. Le plan est donc simple :</p>
+<ol>
+<li>Trouver la stratégie optimale et donc la valeur du coup moyen pour $N$ dés</li>
+<li>Connaître la probabilité de faire zéro en fonction du nombre de dés restants</li>
+<li>Calculer le seuil de rentabilité de la reprise</li>
+</ol>
+<h3 id="strat-gie-optimale">Stratégie optimale</h3>
+<p>Nous avons testé un certain nombre de stratégies, sur $2~000~000$ itérations par combinaison, et le résultat est répertorié ci-après. Sur la <em>heatmap</em>, en abscisse nous avons les stratégies faisant varier $C_5^{50\text{pts}}$, $C_1^{100\text{pts}}$ et $C_i^{p}$ (pour un lancer $l$ donné), et en ordonnée les stratégies décidant ou non de relancer les dés après un coup non nul.</p>
+<p>En abscisse :</p>
+<ul>
+<li>MIN_DICE minimise le nombre de dés gardés afin d&#39;en avoir plus à lancer au coup suivant, qu&#39;importe la valeur</li>
+<li>MAX_SCORE_MIN_DICE fait un compromis : Si on a déjà utilisé autant de dés que disponibles, on garde tout. Il refuse, sauf s&#39;il est obligé de les prendre pour ne pas tout perdre, les 200 (trois dés 2) et 400 (quatre dés 2)</li>
+<li>RANDOM choisit au hasard une combinaison</li>
+<li>MAX_SCORE prend toujours tout ce qu&#39;il peut prendre.</li>
+</ul>
+<p>En ordonnée :</p>
+<ul>
+<li>NEVER ne relance jamais</li>
+<li>RANDOM a une chance sur deux de reprendre</li>
+<li>XXX_DICE.S_THRESHOLD relance tant qu&#39;il n&#39;a pas atteint un restant de dés minimum (TWO_DICES_THRESHOLD relance tant qu&#39;il reste au moins de deux dés)</li>
+<li>SCORE_MIN_XXX relance tant qu&#39;il n&#39;a pas atteint un certain score (SCORE_MIN_300 relance tant qu&#39;il n&#39;a pas atteint plus au moins 300 pour ce tour)</li>
+<li>S_MIN_XXX_Y_D_THRES relance sans réfléchir tant qu&#39;il n&#39;a pas atteint un certain score. Une fois ce score atteint, il continue jusqu&#39;à atteindre un minimum de dés (S_MIN_200_3_D_THRES continuera de jouer tant qu&#39;il n&#39;a pas fait au moins 200 ; une fois qu&#39;il a fait 200, il continue de jouer tant qu&#39;il reste au moins 3 dés).</li>
+</ul>
+<p>S&#39;il reste 5 dés, toutes ces stratégies relancent toujours.</p>
+<p><img src="images/score_heatmap_5.png" alt="scorhm5"></p>
+<p>Une étude de la heatmap nous permet de s&#39;assurer que le résultat a convergé : en effet, FOUR_DICES_THRESHOLD et NEVER sont fonctionnellement identiques et devraient donner les même résultats, ce qui est le cas à moins de un point près.</p>
+<p>Parmi les stratégies analysées, il semble que la combinaison maximisation du score et seuil à deux dés soit la plus pertinente quand on a 5 dés, avec un score moyen optimal $\bar{\sigma}_\infty^{\max, 5}$ de $287$ points. On notera que les stratégies visant à minimiser le nombre de dés gardé, qui sont des stratégies courantes pour ce jeu, sont très inefficaces et font moins bien que le hasard. Néanmoins les stratégies optimales sont différentes lorsqu&#39;il nous reste 4, 3, 2 ou 1 dé, pour cela, voir les annexes.</p>
+<p>Il est possible qu&#39;il existe d&#39;autres stratégies peut être meilleures : nous faisons l&#39;hypothèse que cette amélioration sera marginale et dépasse le cadre de cette étude.</p>
+<h3 id="valeur-du-coup-moyen-optimal">Valeur du coup moyen optimal</h3>
+<p>Le tableau ci-après résume la stratégie optimale selon le nombre de dés restants, ainsi que le score attendu en utilisant cette stratégie.</p>
+<table>
+<thead>
+<tr>
+<th>Nombre de dés $N$</th>
+<th>Stratégie de choix de dés optimale</th>
+<th>Stratégie(s) de continuation optimale</th>
+<th>Score moyen $\bar{\sigma}_\infty^{\max, N}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>MAX_SCORE</td>
+<td>TWO_DICES_THRESHOLD, S_MIN_200_2_D_THRES</td>
+<td>287</td>
+</tr>
+<tr>
+<td>4</td>
+<td>MAX_SCORE</td>
+<td>S_MIN_200_3_D_THRES</td>
+<td>186</td>
+</tr>
+<tr>
+<td>3</td>
+<td>MAX_SCORE</td>
+<td>S_MIN_200_3_D_THRES</td>
+<td>124</td>
+</tr>
+<tr>
+<td>2</td>
+<td>MAX_SCORE</td>
+<td>S_MIN_300_3_D_THRES, SCORE_MIN_300, ...</td>
+<td>104</td>
+</tr>
+<tr>
+<td>1</td>
+<td>MAX_SCORE</td>
+<td>S_MIN_200_2_D_THRES, TWO_DICES_THRESHOLD</td>
+<td>114</td>
+</tr>
+</tbody>
+</table>
+<p>On note que le score moyen est décroissant selon le nombre de dés, sauf quand il n&#39;en reste plus qu&#39;un (ce qui est attendu, puisque le joueur a une chance sur trois de pouvoir relancer 5 dés ensuite)</p>
+<h3 id="probabilit-de-tout-perdre">Probabilité de tout perdre</h3>
+<p>Une seconde simulation donnant la probabilité $p^{N}$ de tout perdre (faire zéro) au premier lancer, pour un lancer de $N$ dés avec $2~000~000$ itérations est donnée dans le tableau ci-après.</p>
+<table>
+<thead>
+<tr>
+<th>Nombre de dés $N$</th>
+<th>Probabilité de tout perdre au premier lancer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>0.077</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.157</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.278</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.445</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.667</td>
+</tr>
+</tbody>
+</table>
+<h3 id="calcul-du-seuil-de-rentabilit-de-la-reprise">Calcul du seuil de rentabilité de la reprise</h3>
+<p>Si on comprend que $\bar{\sigma}<em>\infty^{\max, N}$ est l&#39;espérance d&#39;un tour avec $N$ dés (et contient donc déjà la probabilité de perdre) utilisant la stratégie optimale, on comprend que le fait de reprendre nous donne le choix suivant : Soit je fais $ \bar{\sigma}</em>\infty^{\max, 5} $ en moyenne, ou bien je reprend et donc je fais $ \bar{\sigma}<em>\infty^{\max, N} $ en moyenne, tout en y ajoutant le score du coup précédent $S</em>\text{prev} $ que j&#39;ai la probabilité $p^N$ de perdre entièrement. Le seuil de rentabilité d&#39;une reprise $\kappa^{N}$ est donc le score $S_\text{prev}$ tel que :</p>
+<p>$$
+\begin{split}
+\mathbb{E}(\text{reprise de $N$ dés selon $S<em>\text{prev}$}) &amp;\geq \mathbb{E}(\text{avec 5 dés}) \newline
+S</em>\text{prev}(1 - p^N) + \bar\sigma<em>\infty^{\max, N} &amp;\geq \bar\sigma</em>\infty^{\max, 5} \newline
+S<em>\text{prev} &amp;\geq \frac{\bar\sigma</em>\infty^{\max, 5} - \bar\sigma<em>\infty^{\max, N}}{1-p^N} \newline
+S</em>\text{prev} &amp;\geq \kappa^N
+\end{split}
+$$</p>
+<p>On a donc :</p>
+<p>$$
+\kappa^N = \frac{\bar\sigma<em>\infty^{\max, 5} - \bar\sigma</em>\infty^{\max, N}}{1-p^N}
+$$</p>
+<p>Soit, numériquement avec nos valeurs simulées :</p>
+<table>
+<thead>
+<tr>
+<th>Nombre de dés restants $N$</th>
+<th>Probabilité de tout perdre $p^N$</th>
+<th>Score moyen optimal $\bar\sigma_\infty^{\max, N}$</th>
+<th>Seuil de rentabilité $\kappa^N$ (entre parenthèses : valeur possible du jeu)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>0.077</td>
+<td>287</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.157</td>
+<td>186</td>
+<td>120 (100)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.278</td>
+<td>124</td>
+<td>226 (200)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.445</td>
+<td>104</td>
+<td>330 (300)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.667</td>
+<td>114</td>
+<td>519 (500)</td>
+</tr>
+</tbody>
+</table>
+<p>On remarque, comme attendu, que le seuil de rentabilité pour 5 dés restants est de zéro. Les seuils sont bien plus bas que ce que les joueurs ont l&#39;habitude de reprendre.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Nous avons décrit le fonctionnement du jeu &quot;dix mille&quot;, puis nous avons simulé un grand nombre de parties avec des stratégies différentes afin d&#39;approcher la stratégie optimale, sans chercher à l&#39;atteindre (par manque de temps). En effet, une simple estimation de la valeur moyenne d&#39;un coup quasi-optimal était suffisante pour la suite de l&#39;étude. Ensuite, nous avons simulé la probabilité de faire un score de zéro sur un lancer $N$ dés. Partant des informations précédentes, nous avons pu estimer le seuil de rentabilité à partir duquel cela &quot;vaut le coup&quot; de &quot;reprendre&quot;.</p>
+<h2 id="annexes">Annexes</h2>
+<h3 id="exemple-extrait-d-une-partie-3-joueurs">Exemple (extrait) d&#39;une partie à 3 joueurs</h3>
+<p>Considérons que tout le monde était déjà à 1000, et que C a tout perdu au tour d&#39;avant.</p>
+<p>A commence le jeu. Il lance ces 5 dés et fait le lancer suivant : 1 1 2 6 4. Il décide de prendre un des deux 1. Il relance les 4 dés restants et fait 5 5 5 6. Il prend les trois 5 et note son score final pour ce tour : 600.</p>
+<p>Il reste un dé à B s&#39;il souhaite reprendre. Il tente son coup : il lance le dé restant et fait un 5. Il a donc actuellement 650 points et de nouveau 5 dés. Il relance le tout et fait 1 1 6 4 3. Il prend les deux 1 et relance les dés. Il fait 1 2 3. Il prend de nouveau le 1. Puisqu&#39;il n&#39;a pas fait les 1 d&#39;une traite, ils ne valent individuellement que 100. Il décide de s&#39;arrêter et de noter 950.</p>
+<p>Il reste deux dés à C s&#39;il souhaite reprendre. Il tente le coup : il fait 2 3. Il ne peut rien garder. Il a tout perdu.</p>
+<p>A recommence à zéro : il fait 4 3 2 3 2. Il n&#39;a rien.</p>
+<p>B recommence à zéro : il fait 2 2 2 3 4. Il note 200.</p>
+<p>C peut décider de reprendre les deux dés restants : il refuse et recommence à zéro. Il fait 1 1 1 1 5, soit 2050, en un seul coup. Il prend tout et peut donc tout relancer : il fait 1 2 5 6 3. Il prend le 1 et le 5, note 2200, et s&#39;arrête.</p>
+<p>A peut décider de reprendre les 3 dés restants ... Et ainsi de suite.</p>
+<p>Le déroulement est résumé dans le tableau suivant :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Tour</th>
+<th style="text-align:left">Joueur</th>
+<th style="text-align:left">Lancer de dés (dés gardés entre crochets)</th>
+<th style="text-align:left">Choix du joueur</th>
+<th style="text-align:left">Points gagnés (ce lancer)</th>
+<th style="text-align:left">Total du tour</th>
+<th style="text-align:left">Reprise ? / Suite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:left">A</td>
+<td style="text-align:left">1 1 2 6 4</td>
+<td style="text-align:left">Garde un 1 (100)</td>
+<td style="text-align:left">+100</td>
+<td style="text-align:left">100</td>
+<td style="text-align:left">Relance 4 dés</td>
+</tr>
+<tr>
+<td style="text-align:center">1 (suite)</td>
+<td style="text-align:left">A</td>
+<td style="text-align:left">[1] 5 5 5 6</td>
+<td style="text-align:left">Garde trois 5 (500)</td>
+<td style="text-align:left">+500</td>
+<td style="text-align:left">600</td>
+<td style="text-align:left">S’arrête et note 600</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:left">B</td>
+<td style="text-align:left">(reprend le dé restant) →[1 5 5 5 ] 5</td>
+<td style="text-align:left">Garde un 5 (50)</td>
+<td style="text-align:left">+50</td>
+<td style="text-align:left">650</td>
+<td style="text-align:left">A de nouveau 5 dés</td>
+</tr>
+<tr>
+<td style="text-align:center">1 (suite)</td>
+<td style="text-align:left">B</td>
+<td style="text-align:left">1 1 6 4 3</td>
+<td style="text-align:left">Garde deux 1 (200)</td>
+<td style="text-align:left">+200</td>
+<td style="text-align:left">850</td>
+<td style="text-align:left">Relance 3 dés</td>
+</tr>
+<tr>
+<td style="text-align:center">1 (suite)</td>
+<td style="text-align:left">B</td>
+<td style="text-align:left">[1 1] 1 2 3</td>
+<td style="text-align:left">Garde un 1 (100)</td>
+<td style="text-align:left">+100</td>
+<td style="text-align:left">950</td>
+<td style="text-align:left">S’arrête et note 950</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:left">C</td>
+<td style="text-align:left">(reprend les deux dés restants) →[1 1 1] 2 3</td>
+<td style="text-align:left">Rien de valable</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">Perd tout</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:left">A</td>
+<td style="text-align:left">4 3 2 3 2</td>
+<td style="text-align:left">Rien de valable</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">Perd tout</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:left">B</td>
+<td style="text-align:left">2 2 2 3 4</td>
+<td style="text-align:left">Garde trois 2 (200)</td>
+<td style="text-align:left">+200</td>
+<td style="text-align:left">200</td>
+<td style="text-align:left">S’arrête et note 200</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:left">C</td>
+<td style="text-align:left">(peut reprendre 2 dés restants de B)</td>
+<td style="text-align:left">Refuse</td>
+<td style="text-align:left">–</td>
+<td style="text-align:left">–</td>
+<td style="text-align:left">Repart à zéro</td>
+</tr>
+<tr>
+<td style="text-align:center">2 (suite)</td>
+<td style="text-align:left">C</td>
+<td style="text-align:left">1 1 1 1 5</td>
+<td style="text-align:left">Garde quatre 1 (2000) et un 5 (50)</td>
+<td style="text-align:left">+2050</td>
+<td style="text-align:left">2050</td>
+<td style="text-align:left">Relance 5 dés</td>
+</tr>
+<tr>
+<td style="text-align:center">2 (suite)</td>
+<td style="text-align:left">C</td>
+<td style="text-align:left">1 2 5 6 3</td>
+<td style="text-align:left">Garde 1 (100) et 5 (50)</td>
+<td style="text-align:left">+150</td>
+<td style="text-align:left">2200</td>
+<td style="text-align:left">S’arrête et note 2200</td>
+</tr>
+</tbody>
+</table>
+<h2 id="r-sultats-de-la-strat-gie-optimale-pour-moins-de-5-d-s">Résultats de la stratégie optimale pour moins de 5 dés</h2>
+<p><img src="images/score_heatmap_4.png" alt="scorhm"></p>
+<p><img src="images/score_heatmap_3.png" alt="scorhm"></p>
+<p><img src="images/score_heatmap_2.png" alt="scorhm"></p>
+<p><img src="images/score_heatmap_1.png" alt="scorhm"></p>

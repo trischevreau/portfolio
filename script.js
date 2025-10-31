@@ -73,7 +73,7 @@ function displayProjects(projects) {
 function displayTags() {
   const allTags = [...new Set(allProjects.flatMap(p => p.tags))];
   const tagContainer = document.getElementById('tags');
-  tagContainer.innerHTML = '';
+  tagContainer.innerHTML = 'Filtrer par tags : ';
 
   allTags.forEach(tag => {
     const btn = document.createElement('button');
