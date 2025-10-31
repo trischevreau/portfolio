@@ -96,6 +96,6 @@
     "image": ["dix_mille/1.png", "dix_mille/2.png"],
     "tags": ["Python", "Data", "Statistiques", "Simulation"],
     "date": "2024",
-    "links": [{"url": "assets/dixmille/rapport.html", "label": "le rapport"}]
+    "links": [{"url": "assets/html/dixmille.html", "label": "le rapport"}]
   }
 ]
