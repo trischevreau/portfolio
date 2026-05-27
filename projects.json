@@ -97,5 +97,13 @@
     "tags": ["Python", "Data", "Statistiques", "Simulation"],
     "date": "2024",
     "links": null
+  },
+  {
+    "title": "Fabrication d'un controleur MIDI DIY",
+    "description": "J'ai conçu et fabriqué un contrôleur MIDI modulaire et paramétrable respectant les normes MIDI, en utilisant des composants électroniques standard et de l'impression 3D pour le boîtier. Le contrôleur permet de personnaliser les fonctions des boutons et des potentiomètres via une interface dédiée.",
+    "image": ["midi_diy/1.jpg", "midi_diy/2.jpg"],
+    "tags": ["Électronique", "Prototypage", "Musique"],
+    "date": "2026",
+    "links": null
   }
 ]
