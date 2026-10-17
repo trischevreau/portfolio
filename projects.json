@@ -11,11 +11,11 @@
   },
   {
     "title": "Conception d'un compteur de respirations",
-    "description": "Dans le cadre d'un projet artistique d'un ami, appelé 'Rencontre en 1000 respirations', j'ai conçu la partie logicielle de compteurs communiquants de respirations humaines utilisant Arduino, Python et le protocole Bluetooth.",
+    "description": "Dans le cadre d'un projet artistique d'un ami, appelé 'Rencontre en 1000 respirations', j'ai conçu la partie logicielle de compteurs communiquants de respirations humaines utilisant Arduino et Python.",
     "image": "1000respirations.png",
     "type": "Personnel",
-    "tools_used": ["Code (Python)", "Électronique", "Arduino (C++)", "Fabrication"],
-    "themes": ["Artistique ou créatif"],
+    "tools_used": ["Code (Python)", "Électronique", "Arduino (C++)"],
+    "themes": ["Artistique ou créatif", "Fabrication"],
     "date": "avril 2019",
     "links": [{"url": "https://www.youtube.com/watch?v=tle1mi91wjY", "label": "sur Youtube"}]
   },
@@ -24,8 +24,8 @@
     "description": "Pour jouer à des jeux vidéo rétros, j'ai fabriqué un joystick DIY en utilisant des composants <i>off the shelf</i>, de l'impression 3D et un peu de travail du bois.",
     "image": ["joystick/1.jpg", "joystick/2.jpg", "joystick/3.jpg"],
     "type": "Personnel",
-    "tools_used": ["Code (Python)", "Impression 3D", "Fabrication"],
-    "themes": ["Jeux vidéos / Jeux de société"],
+    "tools_used": ["Code (Python)", "Impression 3D"],
+    "themes": ["Jeux vidéos / Jeux de société", "Fabrication"],
     "date": "décembre 2020",
     "links": null
   },
@@ -74,7 +74,7 @@
   },
   {
     "title": "Étude économique d'une rénovation énergétique d'une maison individuelle",
-    "description": "Dans le cadre d'un projet universitaire mené en groupe, j'ai réalisé une étude économique sur la rénovation énergétique de maison individuelle. En analysant les coûts, et en simulant les pertes et les économies d'énergie potentielles et les incitations financières disponibles, j'ai proposé différents scénarios de rénovation pour maximiser le retour sur investissement.",
+    "description": "Dans le cadre d'un projet universitaire mené en groupe, j'ai réalisé une étude économique sur la rénovation énergétique d'une maison individuelle. En analysant les coûts, et en simulant les pertes et les économies d'énergie potentielles et les incitations financières disponibles, j'ai proposé différents scénarios de rénovation pour maximiser le retour sur investissement.",
     "image": ["renovation/1.png", "renovation/2.png"],
     "type": "Universitaire",
     "tools_used": ["Analyse et visualisation de données", "Modélisation"],
@@ -97,8 +97,8 @@
     "description": "J'ai conçu et fabriqué une lampe de bureau personnalisée en utilisant de la découpe laser, le montage ne nécessitant aucune colle ni vis, mais uniquement 8 boulons et écrous.",
     "image": "lampe.jpg",
     "type": "Personnel",
-    "tools_used": ["Découpe laser", "Impression 3D", "Fabrication"],
-    "themes": ["Artistique ou créatif"],
+    "tools_used": ["Découpe laser", "Impression 3D"],
+    "themes": ["Artistique ou créatif", "Fabrication"],
     "date": "janvier 2024",
     "links": null
   },
@@ -107,8 +107,8 @@
     "description": "J'ai conçu et fabriqué des modules de synthèse audio intercompatibles en me basant sur des plans existants. Chaque module est interfaçable avec les autres via des câbles jack 3.5mm, permettant ainsi de créer un système de synthèse modulaire personnalisé. Pour l'instant : clock divider, saw/square LFO, interface de prototypage.",
     "image": "synth/2.jpg",
     "type": "Personnel",
-    "tools_used": ["Électronique", "Arduino (C++)", "Fabrication"],
-    "themes": ["Production musicale"],
+    "tools_used": ["Électronique", "Arduino (C++)"],
+    "themes": ["Production musicale", "Fabrication"],
     "date": "depuis 2025",
     "links": null
   },
@@ -127,8 +127,8 @@
     "description": "J'ai conçu et fabriqué un contrôleur MIDI modulaire et paramétrable respectant les normes MIDI, en utilisant des composants électroniques standard et de l'impression 3D pour le boîtier.",
     "image": ["midi_diy/1.jpg", "midi_diy/2.jpg"],
     "type": "Personnel",
-    "tools_used": ["Arduino (C++)", "Impression 3D", "Fabrication"],
-    "themes": ["Production musicale"],
+    "tools_used": ["Arduino (C++)", "Impression 3D"],
+    "themes": ["Production musicale", "Fabrication"],
     "date": "2026",
     "links": [{"url": "https://github.com/trischevreau/MidiController", "label": "sur Github"}]
   }
