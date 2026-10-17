@@ -1,5 +1,12 @@
 let allProjects = [];
-let activeTags = new Set();
+const filterCategories = [
+  { key: 'type', label: 'Type', className: 'type' },
+  { key: 'tools_used', label: 'Outils', className: 'tool' },
+  { key: 'themes', label: 'Thèmes', className: 'theme' }
+];
+const activeFilters = Object.fromEntries(
+  filterCategories.map(({ key }) => [key, new Set()])
+);
 
 async function loadProjects() {
   const res = await fetch('projects.json');
@@ -29,9 +36,17 @@ function displayProjects(projects) {
       </a>
     `).join('');
 
-    const renderTags = (tags) => tags.map(t => `
-      <span class="project-tag">${t}</span>
-    `).join('');
+    const renderMetadata = () => filterCategories.map(({ key, label, className }) => {
+      const values = key === 'type' ? [p.type] : p[key];
+      return `
+        <div class="project-meta-group">
+          <span class="project-meta-label">${label}</span>
+          <div class="project-tags">
+            ${values.map(value => `<span class="project-tag project-tag--${className}">${value}</span>`).join('')}
+          </div>
+        </div>
+      `;
+    }).join('');
 
     const renderCarousel = (images) => `
       <div class="carousel">
@@ -55,8 +70,8 @@ function displayProjects(projects) {
         <span class="project-date">${p.date}</span>
       </h2>
       <p class="project-description">${p.description}</p>
-      <div class="project-tags">
-        ${renderTags(p.tags)}
+      <div class="project-metadata">
+        ${renderMetadata()}
       </div>
       ${p.links ? renderLinks(p.links) : ''}
     `;
@@ -71,35 +86,68 @@ function displayProjects(projects) {
 
 
 function displayTags() {
-  const allTags = [...new Set(allProjects.flatMap(p => p.tags))];
   const tagContainer = document.getElementById('tags');
-  tagContainer.innerHTML = '<span class="filter-label">Filtrer par tags</span>';
+  tagContainer.innerHTML = '<span class="filter-label">Filtrer les projets</span>';
 
-  allTags.forEach(tag => {
-    const btn = document.createElement('button');
-    btn.className = 'filter-button';
-    btn.textContent = tag;
-    btn.setAttribute('aria-pressed', 'false');
-    btn.addEventListener('click', () => toggleTag(tag, btn));
-    tagContainer.appendChild(btn);
+  filterCategories.forEach(({ key, label, className }) => {
+    const values = [...new Set(allProjects.flatMap(project =>
+      key === 'type' ? [project.type] : project[key]
+    ))].sort((a, b) => a.localeCompare(b, 'fr'));
+    const group = document.createElement('div');
+    group.className = `filter-group filter-group--${className}`;
+    group.setAttribute('aria-label', `Filtrer par ${label.toLowerCase()}`);
+
+    const groupLabel = document.createElement('span');
+    groupLabel.className = 'filter-group-label';
+    groupLabel.textContent = label;
+    group.appendChild(groupLabel);
+
+    values.forEach(value => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-button';
+      btn.textContent = value;
+      btn.setAttribute('aria-pressed', String(activeFilters[key].has(value)));
+      btn.classList.toggle('is-active', activeFilters[key].has(value));
+      btn.addEventListener('click', () => toggleFilter(key, value));
+      group.appendChild(btn);
+    });
+    tagContainer.appendChild(group);
   });
+
+  if (filterCategories.some(({ key }) => activeFilters[key].size)) {
+    const clearButton = document.createElement('button');
+    clearButton.className = 'filter-clear';
+    clearButton.textContent = 'Effacer les filtres';
+    clearButton.addEventListener('click', clearFilters);
+    tagContainer.appendChild(clearButton);
+  }
 }
 
-function toggleTag(tag, btn) {
-  if (activeTags.has(tag)) {
-    activeTags.delete(tag);
-    btn.classList.remove('is-active');
-    btn.setAttribute('aria-pressed', 'false');
+function toggleFilter(category, value) {
+  const selected = activeFilters[category];
+  if (selected.has(value)) {
+    selected.delete(value);
   } else {
-    activeTags.add(tag);
-    btn.classList.add('is-active');
-    btn.setAttribute('aria-pressed', 'true');
+    selected.add(value);
   }
+  updateFilteredProjects();
+}
 
-  const filtered = activeTags.size
-    ? allProjects.filter(p => p.tags.some(t => activeTags.has(t)))
-    : allProjects;
+function clearFilters() {
+  filterCategories.forEach(({ key }) => activeFilters[key].clear());
+  updateFilteredProjects();
+}
 
+function updateFilteredProjects() {
+  displayTags();
+  const filtered = allProjects.filter(project =>
+    filterCategories.every(({ key }) => {
+      const selected = activeFilters[key];
+      if (!selected.size) return true;
+      const values = key === 'type' ? [project.type] : project[key];
+      return values.some(value => selected.has(value));
+    })
+  );
   displayProjects(filtered);
 }
 function initCarousel(carousel, images) {

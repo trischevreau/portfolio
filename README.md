@@ -1,21 +1,23 @@
 # Portfolio statique
 
-Portfolio simple, statique, filtrable par tags.  
+Portfolio simple et statique, avec des filtres par type de projet, outils utilisés et thèmes.
 Déployable sur **GitHub Pages**.
 
-## 📁 Structure
+## Modifier les projets
 
+Les projets sont définis dans [`projects.json`](./projects.json). Dans VS Code, le schéma JSON du dépôt fournit l'auto-complétion et signale les champs ou valeurs invalides.
+
+Le validateur vérifie la structure des projets ainsi que l'existence des images et des fichiers locaux référencés. Pour lancer la vérification manuellement avec Python 3 :
+
+```powershell
+py -3 scripts/validate_projects.py
 ```
-index.html
-script.js
-projects.json
-assets/
+
+Pour faire exécuter automatiquement le contrôle avant chaque commit dans un nouveau clone, lance ces commandes dans Git Bash (ou un terminal Unix) :
+
+```sh
+chmod +x .githooks/pre-commit
+git config core.hooksPath .githooks
 ```
 
-## 🚀 Déploiement
-
-1. Crée un dépôt GitHub
-2. `git add . && git commit -m "init"`
-3. `git push`
-4. Active GitHub Pages (Settings → Pages → Branch: main /root)
-5. Ton site sera disponible sur `https://<ton-username>.github.io/portfolio/`
+Le hook vérifie la version indexée de `projects.json` et s'assure que chaque fichier référencé est lui aussi suivi dans le commit. Il nécessite Python 3 et bloque le commit si une donnée ou un fichier référencé est invalide ou manquant.

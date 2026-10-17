@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+if command -v py >/dev/null 2>&1; then
+  py -3 scripts/validate_projects.py --staged
+elif command -v python3 >/dev/null 2>&1; then
+  python3 scripts/validate_projects.py --staged
+else
+  echo "Project validation requires Python 3." >&2
+  exit 1
+fi

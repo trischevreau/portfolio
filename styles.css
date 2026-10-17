@@ -85,6 +85,23 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
+.filter-group {
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.filter-group-label {
+  min-width: 4.5rem;
+  color: #596b7d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: right;
+}
+
 .filter-button {
   padding: 0.48rem 0.9rem;
   border: 1px solid var(--color-border);
@@ -111,6 +128,32 @@ a:focus-visible {
   border-color: var(--color-blue-dark);
   background: var(--color-blue-dark);
   color: #fff;
+}
+
+.filter-group--type .filter-button.is-active {
+  border-color: #315b78;
+  background: #315b78;
+}
+
+.filter-group--tool .filter-button.is-active {
+  border-color: #397560;
+  background: #397560;
+}
+
+.filter-group--theme .filter-button.is-active {
+  border-color: #76548d;
+  background: #76548d;
+}
+
+.filter-clear {
+  padding: 0.3rem 0.5rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-blue);
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .project-grid {
@@ -261,21 +304,59 @@ a:focus-visible {
   line-height: 1.65;
 }
 
+.project-metadata {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: auto;
+}
+
+.project-meta-group {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.6rem;
+}
+
+.project-meta-label {
+  min-width: 3.2rem;
+  color: #8492a0;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .project-tags {
   display: flex;
+  flex: 1;
   flex-wrap: wrap;
-  gap: 0.38rem;
-  margin-top: auto;
+  gap: 0.35rem;
 }
 
 .project-tag {
   padding: 0.3rem 0.58rem;
-  border: 1px solid #e3eaf0;
+  border: 1px solid;
   border-radius: 999px;
-  background: #f5f8fa;
-  color: #566b7e;
   font-size: 0.7rem;
   line-height: 1.2;
+}
+
+.project-tag--type {
+  border-color: #d5e2eb;
+  background: #edf4f8;
+  color: #315b78;
+}
+
+.project-tag--tool {
+  border-color: #d5e8dc;
+  background: #eff7f1;
+  color: #397560;
+}
+
+.project-tag--theme {
+  border-color: #e5d9ed;
+  background: #f6f0f9;
+  color: #76548d;
 }
 
 .project-link {
@@ -316,6 +397,17 @@ a:focus-visible {
 }
 
 @media (max-width: 420px) {
+  .filter-group-label {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .project-meta-group {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
   .project-heading {
     align-items: flex-start;
     flex-direction: column;
