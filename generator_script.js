@@ -102,15 +102,26 @@ function displayTags() {
     groupLabel.textContent = label;
     group.appendChild(groupLabel);
 
+    const options = document.createElement('div');
+    options.className = 'filter-options';
     values.forEach(value => {
       const btn = document.createElement('button');
       btn.className = 'filter-button';
-      btn.textContent = value;
+      btn.append(document.createTextNode(value));
+      const count = allProjects.filter(project => {
+        const projectValues = key === 'type' ? [project.type] : project[key];
+        return projectValues.includes(value);
+      }).length;
+      const countLabel = document.createElement('span');
+      countLabel.className = 'filter-count';
+      countLabel.textContent = ` (${count})`;
+      btn.appendChild(countLabel);
       btn.setAttribute('aria-pressed', String(activeFilters[key].has(value)));
       btn.classList.toggle('is-active', activeFilters[key].has(value));
       btn.addEventListener('click', () => toggleFilter(key, value));
-      group.appendChild(btn);
+      options.appendChild(btn);
     });
+    group.appendChild(options);
     tagContainer.appendChild(group);
   });
 

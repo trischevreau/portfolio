@@ -16,6 +16,14 @@
   --color-background: #f3f6f9;
   --shadow-card: 0 8px 28px rgb(25 48 72 / 7%);
   --shadow-card-hover: 0 16px 38px rgb(25 48 72 / 13%);
+  --tag-color-1: 49 91 120;
+  --tag-color-2: 57 117 96;
+  --tag-color-3: 118 84 141;
+  --tag-color-4: 164 94 61;
+  --tag-color-5: 166 117 38;
+  --tag-color-6: 54 116 133;
+  --tag-color-7: 147 76 100;
+  --tag-color-8: 99 105 66;
 }
 
 * {
@@ -65,49 +73,50 @@ a:focus-visible {
 }
 
 .filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.55rem;
+  display: grid;
+  gap: 0.6rem;
   max-width: 1080px;
   margin: 0 auto 2.5rem;
   padding: 0 1.25rem;
 }
 
 .filter-label {
-  flex-basis: 100%;
-  margin-bottom: 0.25rem;
   color: #8190a0;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
 }
 
 .filter-group {
-  display: flex;
-  flex-basis: 100%;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.45rem 1rem;
 }
 
 .filter-group-label {
-  min-width: 4.5rem;
+  padding-top: 0.48rem;
   color: #596b7d;
   font-size: 0.75rem;
   font-weight: 700;
-  text-align: right;
+  text-align: left;
+}
+
+.filter-options {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 0.45rem;
 }
 
 .filter-button {
   padding: 0.48rem 0.9rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgb(var(--tag-color) / 20%);
   border-radius: 999px;
-  background: rgb(255 255 255 / 72%);
-  color: #526579;
+  background: rgb(var(--tag-color) / 8%);
+  color: rgb(var(--tag-color));
   cursor: pointer;
   font-size: 0.82rem;
   transition:
@@ -119,30 +128,29 @@ a:focus-visible {
 
 .filter-button:hover {
   transform: translateY(-1px);
-  border-color: #a9bfd1;
-  background: var(--color-blue-soft);
-  color: var(--color-blue-dark);
+  border-color: rgb(var(--tag-color) / 45%);
+  background: rgb(var(--tag-color) / 15%);
 }
 
 .filter-button.is-active {
-  border-color: var(--color-blue-dark);
-  background: var(--color-blue-dark);
+  border-color: rgb(var(--tag-color));
+  background: rgb(var(--tag-color));
   color: #fff;
 }
 
-.filter-group--type .filter-button.is-active {
-  border-color: #315b78;
-  background: #315b78;
+.filter-group--type,
+.project-tag--type {
+  --tag-color: var(--tag-color-1);
 }
 
-.filter-group--tool .filter-button.is-active {
-  border-color: #397560;
-  background: #397560;
+.filter-group--tool,
+.project-tag--tool {
+  --tag-color: var(--tag-color-2);
 }
 
-.filter-group--theme .filter-button.is-active {
-  border-color: #76548d;
-  background: #76548d;
+.filter-group--theme,
+.project-tag--theme {
+  --tag-color: var(--tag-color-3);
 }
 
 .filter-clear {
@@ -342,21 +350,21 @@ a:focus-visible {
 }
 
 .project-tag--type {
-  border-color: #d5e2eb;
-  background: #edf4f8;
-  color: #315b78;
+  border-color: rgb(var(--tag-color) / 20%);
+  background: rgb(var(--tag-color) / 8%);
+  color: rgb(var(--tag-color));
 }
 
 .project-tag--tool {
-  border-color: #d5e8dc;
-  background: #eff7f1;
-  color: #397560;
+  border-color: rgb(var(--tag-color) / 20%);
+  background: rgb(var(--tag-color) / 8%);
+  color: rgb(var(--tag-color));
 }
 
 .project-tag--theme {
-  border-color: #e5d9ed;
-  background: #f6f0f9;
-  color: #76548d;
+  border-color: rgb(var(--tag-color) / 20%);
+  background: rgb(var(--tag-color) / 8%);
+  color: rgb(var(--tag-color));
 }
 
 .project-link {
@@ -397,9 +405,9 @@ a:focus-visible {
 }
 
 @media (max-width: 420px) {
-  .filter-group-label {
-    flex-basis: 100%;
-    text-align: center;
+  .filter-group {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    column-gap: 0.65rem;
   }
 
   .project-meta-group {
