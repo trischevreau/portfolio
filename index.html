@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <title>Tristan Chevreau - Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-  <header class="text-center py-10">
-    <h1 class="text-4xl font-bold">Tristan Chevreau</h1>
-    <p class="text-gray-500">Portfolio de projets perso et universitaires</p>
+<body>
+  <header class="site-header">
+    <h1>Tristan Chevreau</h1>
+    <p>Portfolio de projets perso et universitaires</p>
   </header>
-  <section id="tags" class="flex flex-wrap justify-center gap-2 mb-6"></section>
-  <main id="projects" class="grid gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3"></main>
-  <script src="script.js"></script>
+  <section id="tags" class="filter-bar" aria-label="Filtrer les projets par tags"></section>
+  <main id="projects" class="project-grid"></main>
+  <script src="generator_script.js"></script>
 </body>
 </html>

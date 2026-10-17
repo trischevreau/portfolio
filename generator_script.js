@@ -20,42 +20,42 @@ function displayProjects(projects) {
 
   projects.forEach(p => {
     const card = document.createElement('div');
-    card.className = 'bg-white rounded-2xl shadow p-4 hover:shadow-lg transition';
+    card.className = 'project-card';
 
     const imagePath = (src) => `assets/images/${src}`;
     const renderLinks = (links) => links.map(link => `
-      <a href="${link.url}" target="_blank" class="text-blue-600 hover:underline text-sm" style="text-align: right; display: block; margin-top: 4px;">
+      <a href="${link.url}" target="_blank" class="project-link">
       Voir ${link.label} →
       </a>
     `).join('');
 
     const renderTags = (tags) => tags.map(t => `
-      <span class="tag bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">${t}</span>
+      <span class="project-tag">${t}</span>
     `).join('');
 
     const renderCarousel = (images) => `
-      <div class="carousel relative overflow-hidden rounded-xl mb-3" style="position:relative;">
-        <div class="carousel-track" style="display:flex; width:100%; transition:transform 0.5s ease;">
-          ${images.map(src => `<img src="${imagePath(src)}" alt="${p.title}" style="width:100%; flex-shrink:0; object-fit:cover;">`).join('')}
+      <div class="carousel">
+        <div class="carousel-track">
+          ${images.map(src => `<img src="${imagePath(src)}" alt="${p.title}" class="carousel-image">`).join('')}
         </div>
-        <button class="carousel-prev" aria-label="Prev" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">‹</button>
-        <button class="carousel-next" aria-label="Next" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;padding:6px 8px;border-radius:9999px;cursor:pointer;">›</button>
-        <div class="carousel-dots" style="position:absolute;right:8px;bottom:8px;display:flex;gap:6px;"></div>
+        <button class="carousel-control carousel-prev" aria-label="Prev">‹</button>
+        <button class="carousel-control carousel-next" aria-label="Next">›</button>
+        <div class="carousel-dots"></div>
       </div>
     `;
 
     const renderImage = (image) => `
-      <img src="${imagePath(image)}" alt="${p.title}" class="rounded-xl mb-3">
+      <img src="${imagePath(image)}" alt="${p.title}" class="project-image">
     `;
 
     card.innerHTML = `
       ${Array.isArray(p.image) && p.image.length > 0 ? renderCarousel(p.image) : renderImage(p.image || '')}
-      <h2 class="text-xl flex justify-between items-center">
-        <span class="font-semibold">${p.title}</span>
-        <span class="text-sm italic font-normal">${p.date}</span>
+      <h2 class="project-heading">
+        <span class="project-title">${p.title}</span>
+        <span class="project-date">${p.date}</span>
       </h2>
-      <p class="text-gray-600 text-sm mb-2">${p.description}</p>
-      <div class="flex flex-wrap gap-1 mb-3">
+      <p class="project-description">${p.description}</p>
+      <div class="project-tags">
         ${renderTags(p.tags)}
       </div>
       ${p.links ? renderLinks(p.links) : ''}
@@ -73,12 +73,13 @@ function displayProjects(projects) {
 function displayTags() {
   const allTags = [...new Set(allProjects.flatMap(p => p.tags))];
   const tagContainer = document.getElementById('tags');
-  tagContainer.innerHTML = 'Filtrer par tags : ';
+  tagContainer.innerHTML = '<span class="filter-label">Filtrer par tags</span>';
 
   allTags.forEach(tag => {
     const btn = document.createElement('button');
-    btn.className = 'px-3 py-1 rounded-full border text-sm hover:bg-blue-100';
+    btn.className = 'filter-button';
     btn.textContent = tag;
+    btn.setAttribute('aria-pressed', 'false');
     btn.addEventListener('click', () => toggleTag(tag, btn));
     tagContainer.appendChild(btn);
   });
@@ -87,10 +88,12 @@ function displayTags() {
 function toggleTag(tag, btn) {
   if (activeTags.has(tag)) {
     activeTags.delete(tag);
-    btn.classList.remove('bg-blue-600', 'text-white');
+    btn.classList.remove('is-active');
+    btn.setAttribute('aria-pressed', 'false');
   } else {
     activeTags.add(tag);
-    btn.classList.add('bg-blue-600', 'text-white');
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-pressed', 'true');
   }
 
   const filtered = activeTags.size
@@ -111,22 +114,15 @@ function initCarousel(carousel, images) {
   // Create dots for each image
   images.forEach((_, index) => {
     const dot = document.createElement('button');
-    dot.className = 'dot';
-    dot.style.cssText = `
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: ${index === 0 ? '#000' : '#ccc'};
-      border: none;
-      cursor: pointer;
-    `;
+    dot.className = index === 0 ? 'carousel-dot is-active' : 'carousel-dot';
+    dot.setAttribute('aria-label', `Image ${index + 1}`);
     dot.addEventListener('click', () => goToSlide(index));
     dotsContainer.appendChild(dot);
   });
 
   const updateDots = () => {
     dotsContainer.childNodes.forEach((dot, index) => {
-      dot.style.background = index === currentIndex ? '#000' : '#ccc';
+      dot.classList.toggle('is-active', index === currentIndex);
     });
   };
 
