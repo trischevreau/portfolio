@@ -104,8 +104,8 @@
   },
   {
     "title": "Fabrication d'un système modulaire de synthèse audio",
-    "description": "J'ai conçu et fabriqué des modules de synthèse audio intercompatibles en me basant sur des plans existants. Chaque module est interfaçable avec les autres via des câbles jack 3.5mm, permettant ainsi de créer un système de synthèse modulaire personnalisé. Pour l'instant : clock divider, saw/square LFO, interface de prototypage.",
-    "image": "synth/2.jpg",
+    "description": "J'ai conçu et fabriqué des modules de synthèse audio intercompatibles en me basant sur des plans existants. Chaque module est interfaçable avec les autres via des câbles jack 3.5mm, permettant ainsi de créer un système de synthèse modulaire personnalisé. Pour l'instant : générateur de fonctions, saw/square LFO, interface de prototypage.",
+    "image": ["synth/1.jpg", "synth/2.jpg"],
     "type": "Personnel",
     "tools_used": ["Électronique", "Arduino (C++)"],
     "themes": ["Production musicale", "Fabrication"],
